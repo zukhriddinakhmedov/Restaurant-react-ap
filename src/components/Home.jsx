@@ -1,6 +1,7 @@
 import { Carousel, Col, Container, Row } from 'react-bootstrap'
 import dishes from '../data/menu.json'
 import { Component } from 'react'
+import ReservationForm from './ReservationForm'
 //dishes is an array of 5 objects
 // eaach object is a pasta dish
 //i wanna create a carousel slide for each pasta dish
@@ -24,31 +25,32 @@ class Home extends Component {
                 <Container>
                     <Row className="mt-3 justify-content-center">
                         <Col xs={12} md={6}>
-                            <Carousel>
-                                {
-                                    dishes.map(dish => (
-                                        <Carousel.Item key={dish.name}>
-                                            <img
-                                                className="d-block w-100"
-                                                src={dish.image}
-                                                alt={dish.name}
-                                                onClick={() => this.setState({
-                                                    //setState is the only way
-                                                    //to change the
-                                                    selectedDish: dish
-                                                })}
-                                            />
-                                            <Carousel.Caption>
-                                                <h3>{dish.name}</h3>
-                                                <p>{dish.description}</p>
-                                            </Carousel.Caption>
-                                        </Carousel.Item>
-                                    ))
-                                }
-
-                            </Carousel>
+                            <ReservationForm />
                         </Col>
                     </Row>
+                    <Carousel>
+                        {
+                            dishes.map(dish => (
+                                <Carousel.Item key={dish.name}>
+                                    <img
+                                        className="d-block w-100"
+                                        src={dish.image}
+                                        alt={dish.name}
+                                        onClick={() => this.setState({
+                                            //setState is the only way
+                                            //to change the
+                                            selectedDish: dish
+                                        })}
+                                    />
+                                    <Carousel.Caption>
+                                        <h3>{dish.name}</h3>
+                                        <p>{dish.description}</p>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                            ))
+                        }
+
+                    </Carousel>
                     <Row>
                         <ul>
                             {
