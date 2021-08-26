@@ -53,12 +53,16 @@ class ReservationForm extends Component {
                             type="number"
                             placeholder="Insert your phone"
                             value={this.state.reservation.phone}
-                            onChange={(e) => this.nandleInput(e, 'phone')}
+                            onChange={(e) => this.handleInput(e, 'phone')}
                         />
                     </Form.Group>
                     <Form.Group controlId="exampleForm.ControlSelect1">
                         <Form.Label>Number of people?</Form.Label>
-                        <Form.Control as="select">
+                        <Form.Control
+                            as="select"
+                            value={this.state.reservation.numberOfPeople}
+                            onChange={(e) => this.handleInput(e, 'numberOfPeople')}
+                        >
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -70,15 +74,29 @@ class ReservationForm extends Component {
                         </Form.Control>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Check type="checkbox" label="Do you smoke?" />
+                        <Form.Check
+                            type="checkbox"
+                            label="Do you smoke?"
+                            checked={this.state.reservation.smoking}//true or false 
+                            onChange={(e) => this.handleInput(e, 'smoking')}
+                        />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>When?</Form.Label>
-                        <Form.Control type="datetime-local" />
+                        <Form.Control
+                            type="datetime-local"
+                            value={this.state.reservation.dateTime}
+                            onChange={(e) => this.handleInput(e, 'dateTime')}
+                        />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Any special request?</Form.Label>
-                        <Form.Control as="textarea" rows={3} />
+                        <Form.Control
+                            as="textarea"
+                            rows={3}
+                            value={this.state.reservation.specialRequests}
+                            onChange={(e) => this.handleInput(e, 'SpecialRequests')}
+                        />
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Submit

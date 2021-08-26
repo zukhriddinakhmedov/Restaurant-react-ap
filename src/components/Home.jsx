@@ -2,6 +2,7 @@ import { Carousel, Col, Container, Row } from 'react-bootstrap'
 import dishes from '../data/menu.json'
 import { Component } from 'react'
 import ReservationForm from './ReservationForm'
+import Reservations from './Reservations'
 //dishes is an array of 5 objects
 // eaach object is a pasta dish
 //i wanna create a carousel slide for each pasta dish
@@ -23,6 +24,11 @@ class Home extends Component {
         return (
             <div>
                 <Container>
+                    <Row className="mt-3 justify-content-center">
+                        <Col sx={12} md={6}>
+                            <Reservations />
+                        </Col>
+                    </Row>
                     <Row className="mt-3 justify-content-center">
                         <Col xs={12} md={6}>
                             <ReservationForm />
