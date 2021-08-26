@@ -33,6 +33,40 @@ class ReservationForm extends Component {
         })
     }
 
+    handleSubmit = async (e) => {
+        e.preventDefault()
+        console.log(this.state.reservation)
+        try {
+            let response = await fetch("https://striveschool-api.herokuapp.com/api/reservation", {
+                method: 'POST',
+                body: JSON.stringify(this.state.reservation),
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            })
+            if (response.ok) {
+                alert('your reservation was saved')
+
+                this.setState({
+                    reservation: {
+                        name: '',
+                        phone: '',
+                        numberOfPeople: 1,
+                        smoking: false,
+                        dateTime: '',
+                        specialRequests: '',
+                    }
+                })
+            } else {
+                alert('your reservation was NOT saved!')
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+
     render() {
         return (
             <div className="text">
@@ -95,7 +129,7 @@ class ReservationForm extends Component {
                             as="textarea"
                             rows={3}
                             value={this.state.reservation.specialRequests}
-                            onChange={(e) => this.handleInput(e, 'SpecialRequests')}
+                            onChange={(e) => this.handleInput(e, 'specialRequests')}
                         />
                     </Form.Group>
                     <Button variant="primary" type="submit">
